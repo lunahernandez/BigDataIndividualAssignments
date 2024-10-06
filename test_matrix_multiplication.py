@@ -1,19 +1,23 @@
+import csv
 import random
+import pytest
 from matrix_multiplication import matrix_multiplication
 
 
-def test_matrix_multiplication(benchmark):
-    n = 10
+def read_matrix_sizes_from_csv(filename, delimiter=','):
+    sizes = []
+    with open(filename, newline='') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=delimiter)
+        for row in csvreader:
+            sizes.append(int(row[0]))
+    return sizes
 
-    a = [[random.random() for _ in range(n)] for _ in range(n)]
-    b = [[random.random() for _ in range(n)] for _ in range(n)]
 
-    benchmark(matrix_multiplication, a, b, n)
+matrix_sizes = read_matrix_sizes_from_csv('matrix_sizes.csv')
 
 
-def test_matrix_multiplication_pedantic(benchmark):
-    n = 10
-
+@pytest.mark.parametrize("n", matrix_sizes)
+def test_matrix_multiplication_pedantic(benchmark, n):
     a = [[random.random() for _ in range(n)] for _ in range(n)]
     b = [[random.random() for _ in range(n)] for _ in range(n)]
 
