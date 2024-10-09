@@ -1,0 +1,745 @@
+{
+    "machine_info": {
+        "node": "DESKTOP-TUG3D4R",
+        "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+        "machine": "AMD64",
+        "python_compiler": "MSC v.1938 64 bit (AMD64)",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.11.9",
+        "python_version": "3.11.9",
+        "python_build": [
+            "tags/v3.11.9:de54cf5",
+            "Apr  2 2024 10:12:12"
+        ],
+        "release": "10",
+        "system": "Windows",
+        "cpu": {
+            "python_version": "3.11.9.final.0 (64 bit)",
+            "cpuinfo_version": [
+                9,
+                0,
+                0
+            ],
+            "cpuinfo_version_string": "9.0.0",
+            "arch": "X86_64",
+            "bits": 64,
+            "count": 8,
+            "arch_string_raw": "AMD64",
+            "vendor_id_raw": "GenuineIntel",
+            "brand_raw": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+            "hz_advertised_friendly": "2.8000 GHz",
+            "hz_actual_friendly": "2.8030 GHz",
+            "hz_advertised": [
+                2800000000,
+                0
+            ],
+            "hz_actual": [
+                2803000000,
+                0
+            ],
+            "flags": [
+                "3dnow",
+                "3dnowprefetch",
+                "abm",
+                "acpi",
+                "adx",
+                "aes",
+                "apic",
+                "avx",
+                "avx2",
+                "avx512bitalg",
+                "avx512bw",
+                "avx512cd",
+                "avx512dq",
+                "avx512f",
+                "avx512ifma",
+                "avx512vbmi",
+                "avx512vbmi2",
+                "avx512vl",
+                "avx512vnni",
+                "avx512vpopcntdq",
+                "bmi1",
+                "bmi2",
+                "clflush",
+                "clflushopt",
+                "clwb",
+                "cmov",
+                "cx16",
+                "cx8",
+                "de",
+                "ds_cpl",
+                "dtes64",
+                "dts",
+                "erms",
+                "est",
+                "f16c",
+                "fma",
+                "fpu",
+                "fxsr",
+                "gfni",
+                "ht",
+                "ia64",
+                "intel_pt",
+                "invpcid",
+                "lahf_lm",
+                "mca",
+                "mce",
+                "mmx",
+                "monitor",
+                "movbe",
+                "msr",
+                "mtrr",
+                "osxsave",
+                "pae",
+                "pat",
+                "pbe",
+                "pcid",
+                "pclmulqdq",
+                "pdcm",
+                "pge",
+                "pku",
+                "pni",
+                "popcnt",
+                "pqe",
+                "pse",
+                "pse36",
+                "rdpid",
+                "rdrnd",
+                "rdseed",
+                "sep",
+                "serial",
+                "sha",
+                "smap",
+                "smep",
+                "ss",
+                "sse",
+                "sse2",
+                "sse4_1",
+                "sse4_2",
+                "ssse3",
+                "tm",
+                "tm2",
+                "tsc",
+                "tscdeadline",
+                "umip",
+                "vaes",
+                "vme",
+                "vmx",
+                "vpclmulqdq",
+                "x2apic",
+                "xsave",
+                "xtpr"
+            ],
+            "l2_cache_size": 65536,
+            "l2_cache_line_size": 256,
+            "l2_cache_associativity": 7,
+            "stepping": 1,
+            "model": 140,
+            "family": 6
+        }
+    },
+    "commit_info": {
+        "id": "3546a88dcbb3b6d9993f22df5c5258782d1a3deb",
+        "time": "2024-10-06T21:14:03+01:00",
+        "author_time": "2024-10-06T21:14:03+01:00",
+        "dirty": true,
+        "project": "BigDataIndividualAssignments",
+        "branch": "master"
+    },
+    "benchmarks": [
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_1[10]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_1[10]",
+            "params": {
+                "n": 10
+            },
+            "param": "10",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 8.903899999495479e-05,
+                "max": 0.00011403100000279665,
+                "mean": 9.682939999856898e-05,
+                "stddev": 7.090157093069591e-06,
+                "rounds": 10,
+                "median": 9.477149999838729e-05,
+                "iqr": 3.8079999922047234e-06,
+                "q1": 9.316900000158057e-05,
+                "q3": 9.697699999378529e-05,
+                "iqr_outliers": 2,
+                "stddev_outliers": 2,
+                "outliers": "2;2",
+                "ld15iqr": 8.903899999495479e-05,
+                "hd15iqr": 0.00010360099999161321,
+                "ops": 10327.44187214605,
+                "total": 0.0009682939999856899,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_1[50]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_1[50]",
+            "params": {
+                "n": 50
+            },
+            "param": "50",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.009944353999999293,
+                "max": 0.01046897700000045,
+                "mean": 0.010231158700001288,
+                "stddev": 0.00015998788768396005,
+                "rounds": 10,
+                "median": 0.010247573999999985,
+                "iqr": 8.907100000214892e-05,
+                "q1": 0.010228679000001649,
+                "q3": 0.010317750000003798,
+                "iqr_outliers": 3,
+                "stddev_outliers": 3,
+                "outliers": "3;3",
+                "ld15iqr": 0.010228679000001649,
+                "hd15iqr": 0.01046897700000045,
+                "ops": 97.74064007040319,
+                "total": 0.10231158700001287,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_1[100]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_1[100]",
+            "params": {
+                "n": 100
+            },
+            "param": "100",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.08111150600000655,
+                "max": 0.08243897199999992,
+                "mean": 0.08174934880000091,
+                "stddev": 0.0004664303086789819,
+                "rounds": 10,
+                "median": 0.08189591399999699,
+                "iqr": 0.0008846729999913844,
+                "q1": 0.0811931320000076,
+                "q3": 0.08207780499999899,
+                "iqr_outliers": 0,
+                "stddev_outliers": 4,
+                "outliers": "4;0",
+                "ld15iqr": 0.08111150600000655,
+                "hd15iqr": 0.08243897199999992,
+                "ops": 12.232513343274345,
+                "total": 0.8174934880000093,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_2[10]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_2[10]",
+            "params": {
+                "n": 10
+            },
+            "param": "10",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 8.350799999789161e-05,
+                "max": 0.00011353099999723781,
+                "mean": 9.485530000074504e-05,
+                "stddev": 8.743445951651618e-06,
+                "rounds": 10,
+                "median": 9.369050000259448e-05,
+                "iqr": 1.0669000002963005e-05,
+                "q1": 8.824900000035996e-05,
+                "q3": 9.891800000332296e-05,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 8.350799999789161e-05,
+                "hd15iqr": 0.00011353099999723781,
+                "ops": 10542.373488799736,
+                "total": 0.0009485530000074503,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_2[50]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_2[50]",
+            "params": {
+                "n": 50
+            },
+            "param": "50",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.010065475999999763,
+                "max": 0.010690389000001233,
+                "mean": 0.01027078320000146,
+                "stddev": 0.00018003620725364343,
+                "rounds": 10,
+                "median": 0.01022216400000616,
+                "iqr": 7.510499999625539e-05,
+                "q1": 0.010188349000000017,
+                "q3": 0.010263453999996272,
+                "iqr_outliers": 3,
+                "stddev_outliers": 3,
+                "outliers": "3;3",
+                "ld15iqr": 0.010141444999999295,
+                "hd15iqr": 0.010468885999998748,
+                "ops": 97.36355840904692,
+                "total": 0.1027078320000146,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_2[100]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_2[100]",
+            "params": {
+                "n": 100
+            },
+            "param": "100",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.07679850500000612,
+                "max": 0.10488610399999743,
+                "mean": 0.08389621210000041,
+                "stddev": 0.00782920071393709,
+                "rounds": 10,
+                "median": 0.08192905649999829,
+                "iqr": 0.00042976200000340026,
+                "q1": 0.08161689300000034,
+                "q3": 0.08204665500000374,
+                "iqr_outliers": 4,
+                "stddev_outliers": 1,
+                "outliers": "1;4",
+                "ld15iqr": 0.08161689300000034,
+                "hd15iqr": 0.08711545699999988,
+                "ops": 11.919489270958339,
+                "total": 0.8389621210000041,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_3[10]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_3[10]",
+            "params": {
+                "n": 10
+            },
+            "param": "10",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 1.07060000027559e-05,
+                "max": 1.1985000001004664e-05,
+                "mean": 1.1390600000595441e-05,
+                "stddev": 4.06423478501329e-07,
+                "rounds": 10,
+                "median": 1.1460499999884634e-05,
+                "iqr": 4.1199999941454823e-07,
+                "q1": 1.1254000000917585e-05,
+                "q3": 1.1666000000332133e-05,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 1.07060000027559e-05,
+                "hd15iqr": 1.1985000001004664e-05,
+                "ops": 87791.68787840195,
+                "total": 0.00011390600000595441,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_3[50]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_3[50]",
+            "params": {
+                "n": 50
+            },
+            "param": "50",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.00020674000000326487,
+                "max": 0.00021575200000370387,
+                "mean": 0.00020817100000112987,
+                "stddev": 2.703546766086377e-06,
+                "rounds": 10,
+                "median": 0.00020724750000226776,
+                "iqr": 9.490000047662685e-07,
+                "q1": 0.00020714199999929405,
+                "q3": 0.00020809100000406032,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.00020674000000326487,
+                "hd15iqr": 0.00021575200000370387,
+                "ops": 4803.743076579219,
+                "total": 0.0020817100000112983,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_3[100]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_3[100]",
+            "params": {
+                "n": 100
+            },
+            "param": "100",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.0007954030000018974,
+                "max": 0.0008383489999960147,
+                "mean": 0.0008142415999991499,
+                "stddev": 1.5865151896639223e-05,
+                "rounds": 10,
+                "median": 0.0008097429999997985,
+                "iqr": 3.1165999998847825e-05,
+                "q1": 0.0008003000000007887,
+                "q3": 0.0008314659999996366,
+                "iqr_outliers": 0,
+                "stddev_outliers": 4,
+                "outliers": "4;0",
+                "ld15iqr": 0.0007954030000018974,
+                "hd15iqr": 0.0008383489999960147,
+                "ops": 1228.1367102848146,
+                "total": 0.0081424159999915,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_3[500]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_3[500]",
+            "params": {
+                "n": 500
+            },
+            "param": "500",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.02275251600000047,
+                "max": 0.02458185299999968,
+                "mean": 0.023487624699999286,
+                "stddev": 0.000608423516693505,
+                "rounds": 10,
+                "median": 0.023443232499998884,
+                "iqr": 0.000765430000010385,
+                "q1": 0.022960109999994528,
+                "q3": 0.023725540000004913,
+                "iqr_outliers": 0,
+                "stddev_outliers": 4,
+                "outliers": "4;0",
+                "ld15iqr": 0.02275251600000047,
+                "hd15iqr": 0.02458185299999968,
+                "ops": 42.57561216907687,
+                "total": 0.23487624699999285,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_3[1000]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_3[1000]",
+            "params": {
+                "n": 1000
+            },
+            "param": "1000",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.09576748499999667,
+                "max": 0.10496994600000108,
+                "mean": 0.09770800329999837,
+                "stddev": 0.002640858629414952,
+                "rounds": 10,
+                "median": 0.09697101599999769,
+                "iqr": 0.0007609350000075121,
+                "q1": 0.0967581749999954,
+                "q3": 0.0975191100000029,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.09576748499999667,
+                "hd15iqr": 0.10496994600000108,
+                "ops": 10.234576147561256,
+                "total": 0.9770800329999838,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_4[10]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_4[10]",
+            "params": {
+                "n": 10
+            },
+            "param": "10",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 1.0453000004417846e-05,
+                "max": 2.2635000004811445e-05,
+                "mean": 1.2228800001139461e-05,
+                "stddev": 3.686323698244343e-06,
+                "rounds": 10,
+                "median": 1.1030999999093183e-05,
+                "iqr": 8.079999952315125e-07,
+                "q1": 1.0760000004665925e-05,
+                "q3": 1.1567999999897438e-05,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 1.0453000004417846e-05,
+                "hd15iqr": 2.2635000004811445e-05,
+                "ops": 81774.17243775525,
+                "total": 0.00012228800001139463,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_4[50]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_4[50]",
+            "params": {
+                "n": 50
+            },
+            "param": "50",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.00016343100000085542,
+                "max": 0.0001889610000034736,
+                "mean": 0.00017834970000058092,
+                "stddev": 8.534408044024254e-06,
+                "rounds": 10,
+                "median": 0.00017945199999758188,
+                "iqr": 1.3137999994796692e-05,
+                "q1": 0.00017226400000254217,
+                "q3": 0.00018540199999733886,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 0.00016343100000085542,
+                "hd15iqr": 0.0001889610000034736,
+                "ops": 5606.962052623261,
+                "total": 0.0017834970000058091,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_4[100]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_4[100]",
+            "params": {
+                "n": 100
+            },
+            "param": "100",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.0006035380000048462,
+                "max": 0.0006553590000021359,
+                "mean": 0.000629662800000915,
+                "stddev": 1.661026845560336e-05,
+                "rounds": 10,
+                "median": 0.0006342319999976097,
+                "iqr": 2.2688999988531525e-05,
+                "q1": 0.0006161750000046595,
+                "q3": 0.000638863999993191,
+                "iqr_outliers": 0,
+                "stddev_outliers": 4,
+                "outliers": "4;0",
+                "ld15iqr": 0.0006035380000048462,
+                "hd15iqr": 0.0006553590000021359,
+                "ops": 1588.1516265508255,
+                "total": 0.006296628000009148,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_4[500]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_4[500]",
+            "params": {
+                "n": 500
+            },
+            "param": "500",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.017713769000001777,
+                "max": 0.01844716999999946,
+                "mean": 0.018065898500000913,
+                "stddev": 0.00023701964343846358,
+                "rounds": 10,
+                "median": 0.018070761000003585,
+                "iqr": 0.0003157709999959471,
+                "q1": 0.01791803600000094,
+                "q3": 0.018233806999996886,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 0.017713769000001777,
+                "hd15iqr": 0.01844716999999946,
+                "ops": 55.35290702535218,
+                "total": 0.18065898500000913,
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_matrix_multiplication_4[1000]",
+            "fullname": "code/python/test_matrix_multiplication.py::test_matrix_multiplication_4[1000]",
+            "params": {
+                "n": 1000
+            },
+            "param": "1000",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": 100000
+            },
+            "stats": {
+                "min": 0.0781515440000021,
+                "max": 0.08151317900000322,
+                "mean": 0.07943399060000138,
+                "stddev": 0.0009333464318462422,
+                "rounds": 10,
+                "median": 0.07916579650000585,
+                "iqr": 0.0010595259999990891,
+                "q1": 0.07892488200000117,
+                "q3": 0.07998440800000026,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 0.0781515440000021,
+                "hd15iqr": 0.08151317900000322,
+                "ops": 12.589069143404998,
+                "total": 0.7943399060000137,
+                "iterations": 100
+            }
+        }
+    ],
+    "datetime": "2024-10-09T15:40:43.598801",
+    "version": "4.0.0"
+}
