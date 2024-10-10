@@ -1,8 +1,5 @@
 import csv
 import random
-import time
-
-from memory_profiler import profile
 import pytest
 from matrix_multiplication import (matrix_multiplication,
                                    matrix_multiplication_numpy_dot,
@@ -22,7 +19,6 @@ matrix_sizes = read_matrix_sizes_from_csv('data/matrix_sizes.csv')
 
 
 @pytest.mark.parametrize("n", matrix_sizes[:-2])
-@profile
 def test_matrix_multiplication_1(benchmark, n):
     a = [[random.random() for _ in range(n)] for _ in range(n)]
     b = [[random.random() for _ in range(n)] for _ in range(n)]
@@ -32,7 +28,6 @@ def test_matrix_multiplication_1(benchmark, n):
 
 
 @pytest.mark.parametrize("n", matrix_sizes[:-2])
-@profile
 def test_matrix_multiplication_2(benchmark, n):
     a = [[random.random() for _ in range(n)] for _ in range(n)]
     b = [[random.random() for _ in range(n)] for _ in range(n)]
@@ -42,7 +37,6 @@ def test_matrix_multiplication_2(benchmark, n):
 
 
 @pytest.mark.parametrize("n", matrix_sizes)
-@profile
 def test_matrix_multiplication_3(benchmark, n):
     a = [[random.random() for _ in range(n)] for _ in range(n)]
     b = [[random.random() for _ in range(n)] for _ in range(n)]
@@ -52,7 +46,6 @@ def test_matrix_multiplication_3(benchmark, n):
 
 
 @pytest.mark.parametrize("n", matrix_sizes)
-@profile
 def test_matrix_multiplication_4(benchmark, n):
     a = [[random.random() for _ in range(n)] for _ in range(n)]
     b = [[random.random() for _ in range(n)] for _ in range(n)]
