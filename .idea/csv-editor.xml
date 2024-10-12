@@ -3,6 +3,20 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\code\java\matrixMultiplication\java-benchmark-results.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\code\java\matrixMultiplication\java-memory-results.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\0001_benchmarks.csv">
           <value>
             <Attribute>
@@ -10,7 +24,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\java-benchmark-results.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\matrix_sizes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\processed-benchmark-results.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
