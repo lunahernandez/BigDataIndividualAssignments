@@ -16,8 +16,23 @@ import java.util.Map;
 public class BenchmarkPlotter {
 
     public void plotBenchmarkComparison(Map<String, List<BenchmarkResultProcessor.Pair<Integer, Double>>> benchmarkData) {
-        XYSeriesCollection dataset1 = new XYSeriesCollection();
-        XYSeriesCollection dataset2 = new XYSeriesCollection();
+        XYSeriesCollection dataset = getDataset(benchmarkData);
+
+        JFreeChart chart1 = ChartFactory.createXYLineChart(
+                "Mean Time vs. Matrix Size for Different Functions",
+                "Matrix Size (n)",
+                "Mean Time (ms)",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        showChart(chart1);
+    }
+
+    private static XYSeriesCollection getDataset(Map<String, List<BenchmarkResultProcessor.Pair<Integer, Double>>> benchmarkData) {
+        XYSeriesCollection dataset = new XYSeriesCollection();
 
         for (Map.Entry<String, List<BenchmarkResultProcessor.Pair<Integer, Double>>> entry : benchmarkData.entrySet()) {
             String benchmarkName = entry.getKey();
@@ -27,39 +42,12 @@ public class BenchmarkPlotter {
                 series.add(dataPoint.getKey(), dataPoint.getValue());
             }
 
-            dataset1.addSeries(series);
-
-            if (!benchmarkName.equals("multiplication2")) {
-                dataset2.addSeries(series);
-            }
+            dataset.addSeries(series);
         }
-
-        JFreeChart chart1 = ChartFactory.createXYLineChart(
-                "All Benchmarks",
-                "Matrix Size (n)",
-                "Mean Time (ms)",
-                dataset1,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
-        showChart(chart1, "All Benchmarks");
-
-        JFreeChart chart2 = ChartFactory.createXYLineChart(
-                "Benchmarks without multiplication2",
-                "Matrix Size (n)",
-                "Mean Time (ms)",
-                dataset2,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
-        showChart(chart2, "Benchmarks without multiplication2");
+        return dataset;
     }
 
-    private void showChart(JFreeChart chart, String title) {
+    private void showChart(JFreeChart chart) {
         chart.setBackgroundPaint(Color.WHITE);
         XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.WHITE);
@@ -67,7 +55,7 @@ public class BenchmarkPlotter {
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
-        JFrame frame = new JFrame(title);
+        JFrame frame = new JFrame("Mean Time vs. Matrix Size for Different Functions");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(chartPanel, BorderLayout.CENTER);
         frame.pack();
