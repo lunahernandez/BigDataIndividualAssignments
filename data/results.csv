@@ -1,0 +1,16 @@
+Function Name,Matrix Size,Execution Time (milliseconds),Peak Memory Usage (KB)
+./matrix1_parametrization,10,.000190000,1.17
+./matrix1_parametrization,50,.000201000,1.23
+./matrix1_parametrization,100,.000269000,1.40
+./matrix1_parametrization,500,122.836320000,6.90
+./matrix1_parametrization,1000,1115.339099000,24.15
+./matrix2_parametrization,10,.000405000,1.10
+./matrix2_parametrization,50,.000232000,1.22
+./matrix2_parametrization,100,.000221000,1.35
+./matrix2_parametrization,500,69.272094000,6.79
+./matrix2_parametrization,1000,610.875999000,24.14
+./matrix3_parametrization,10,.000235000,1.13
+./matrix3_parametrization,50,.084210000,1.23
+./matrix3_parametrization,100,1.211130000,1.38
+./matrix3_parametrization,500,93.392069000,6.85
+./matrix3_parametrization,1000,697.793418000,24.10
