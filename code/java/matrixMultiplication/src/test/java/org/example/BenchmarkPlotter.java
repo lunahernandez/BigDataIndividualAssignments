@@ -5,6 +5,8 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -52,6 +54,9 @@ public class BenchmarkPlotter {
         XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.WHITE);
 
+        setLabelAndTickFont(plot);
+        setLegendAndTitleFont(chart);
+
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
@@ -61,6 +66,27 @@ public class BenchmarkPlotter {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private static void setLabelAndTickFont(XYPlot plot) {
+        Font axisLabelFont = new Font("Tahoma", Font.BOLD, 16);
+        plot.getDomainAxis().setLabelFont(axisLabelFont);
+        plot.getRangeAxis().setLabelFont(axisLabelFont);
+
+        Font axisTickFont = new Font("Tahoma", Font.PLAIN, 14);
+        plot.getDomainAxis().setTickLabelFont(axisTickFont);
+        plot.getRangeAxis().setTickLabelFont(axisTickFont);
+    }
+
+    private static void setLegendAndTitleFont(JFreeChart chart) {
+        Font titleFont = new Font("Tahoma", Font.BOLD, 20);
+        chart.setTitle(new TextTitle(chart.getTitle().getText(), titleFont));
+
+        LegendTitle legend = chart.getLegend();
+        if (legend != null) {
+            Font legendFont = new Font("Tahoma", Font.PLAIN, 16);
+            legend.setItemFont(legendFont);
+        }
     }
 
     public static void main(String[] args) {
