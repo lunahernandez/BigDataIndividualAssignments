@@ -1,0 +1,14 @@
+name,n,memory_usage(MiB)
+matrix_multiplication,10,54.4
+matrix_multiplication,50,54.5
+matrix_multiplication,100,55.7
+matrix_multiplication_numpy_dot,10,54.2
+matrix_multiplication_numpy_dot,50,54.6
+matrix_multiplication_numpy_dot,100,55.9
+matrix_multiplication_numpy_dot,500,77.9
+matrix_multiplication_numpy_dot,1000,147.5
+matrix_multiplication_numpy_matmul,10,54.2
+matrix_multiplication_numpy_matmul,50,54.6
+matrix_multiplication_numpy_matmul,100,56.0
+matrix_multiplication_numpy_matmul,500,77.9
+matrix_multiplication_numpy_matmul,1000,147.6
