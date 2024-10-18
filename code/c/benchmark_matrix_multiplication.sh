@@ -12,7 +12,7 @@ sizes_csv_file=$2
 
 # Check if results.csv exists and is not empty, otherwise add the header
 if [ ! -s ../data/results.csv ]; then
-    echo "Function Name,Matrix Size,Execution Time (milliseconds),Peak Memory Usage (KB)" > ../data/results.csv
+    echo "Function Name,Matrix Size,Execution Time (milliseconds),Peak Memory Usage (MiB)" > ../data/results.csv
 fi
 
 # Function to read sizes from a CSV file
