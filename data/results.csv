@@ -1,4 +1,4 @@
-Function Name,Matrix Size,Execution Time (milliseconds),Peak Memory Usage (KB)
+Function Name,Matrix Size,Execution Time (milliseconds),Peak Memory Usage (MiB)
 ./matrix1_parametrization,10,.000190000,1.17
 ./matrix1_parametrization,50,.000201000,1.23
 ./matrix1_parametrization,100,.000269000,1.40
