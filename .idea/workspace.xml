@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="06983c49-50fb-4e9e-8c9a-1fb5702bd21b" name="Changes" comment="Restructuring for task 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/BlockMatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/BlockMatrixMultiplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/MatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/MatrixMultiplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/SparseMatrixCOOMul.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/SparseMatrixCOOMul.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/test/java/org/ulpgc/MatrixMultiplicationBenchmarking.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/test/java/org/ulpgc/MatrixMultiplicationBenchmarking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/data/memory_usage.csv" beforeDir="false" afterPath="$PROJECT_DIR$/task2/data/memory_usage.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/data/benchmark_results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/data/benchmark_results.json" beforeDir="false" afterPath="$PROJECT_DIR$/task2/data/benchmark_results.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BenchmarkResultProcessor.executor": "Run",
+    "Application.BenchmarkResultProcessor.executor": "Debug",
     "Application.BlockMatrixMultiplication.executor": "Run",
     "Application.COOMatrix.executor": "Run",
     "Application.MatrixMarketReader.executor": "Run",
@@ -100,22 +97,9 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MatrixMultiplication">
+  <component name="RunManager" selected="Application.TimeDataPlotter">
     <configuration name="BenchmarkResultProcessor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ulpgc.BenchmarkResultProcessor" />
-      <module name="matrixMultiplication2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ulpgc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="COOMatrix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ulpgc.COOMatrix" />
       <module name="matrixMultiplication2" />
       <extension name="coverage">
         <pattern>
@@ -166,20 +150,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MatrixMultiplicationBenchmarking.*" type="jmh-id" temporary="true" program-parameters="org.ulpgc.MatrixMultiplicationBenchmarking.* -rf json -rff benchmark_results.json" working-dir="$MODULE_WORKING_DIR$" benchmark-type="CLASS" benchmark-class="org.ulpgc.MatrixMultiplicationBenchmarking" isAlternativeJrePathEnabled="false">
+      <module name="matrixMultiplication2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.COOMatrix" />
+      <item itemvalue="Application.BenchmarkResultProcessor" />
       <item itemvalue="Application.MemoryDataPlotter" />
       <item itemvalue="Application.MatrixMultiplication" />
-      <item itemvalue="Application.BenchmarkResultProcessor" />
       <item itemvalue="Application.TimeDataPlotter" />
+      <item itemvalue="Jmh.MatrixMultiplicationBenchmarking.*" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MatrixMultiplication" />
-        <item itemvalue="Application.MemoryDataPlotter" />
-        <item itemvalue="Application.COOMatrix" />
         <item itemvalue="Application.TimeDataPlotter" />
         <item itemvalue="Application.BenchmarkResultProcessor" />
+        <item itemvalue="Jmh.MatrixMultiplicationBenchmarking.*" />
+        <item itemvalue="Application.MatrixMultiplication" />
+        <item itemvalue="Application.MemoryDataPlotter" />
       </list>
     </recent_temporary>
   </component>
