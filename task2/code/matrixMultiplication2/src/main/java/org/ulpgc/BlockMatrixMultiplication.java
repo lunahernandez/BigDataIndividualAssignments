@@ -51,9 +51,9 @@ public class BlockMatrixMultiplication {
     }
 
     private static void printMatrix(double[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.printf("%.2f ", matrix[i][j]);
+        for (double[] doubles : matrix) {
+            for (double aDouble : doubles) {
+                System.out.printf("%.2f ", aDouble);
             }
             System.out.println();
         }
