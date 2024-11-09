@@ -75,7 +75,7 @@ public class MatrixMultiplicationMemory {
                 }
             }
         }
-
+        System.gc();
         long beforeMemory = getUsedMemory();
 
         switch (method) {
