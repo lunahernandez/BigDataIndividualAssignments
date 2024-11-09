@@ -52,28 +52,15 @@ public class TimeDataPlotter {
     }
 
     public void plotBenchmarkComparison(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
-        XYSeriesCollection dataset = getDataset(benchmarkData);
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                "Matrix Size vs Mean Time",
-                "Matrix Size (n)",
-                "Mean Time (ms)",
-                dataset,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
-
-        styleChart(chart, benchmarkData);
-        showChart(chart);
-
+        // Gráficos para cada nivel de sparsity con todos los algoritmos
         for (Double sparsity : benchmarkData.values().iterator().next().keySet()) {
             plotSparsityChart(benchmarkData, sparsity);
+            plotSparsityChartWithoutStrassen(benchmarkData, sparsity);
         }
     }
 
     private void plotSparsityChart(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, double sparsity) {
-        XYSeriesCollection dataset = getDatasetForSparsity(benchmarkData, sparsity);
+        XYSeriesCollection dataset = getDatasetForSparsity(benchmarkData, sparsity, false);
         JFreeChart chart = ChartFactory.createXYLineChart(
                 "Matrix Size vs Mean Time (Sparsity " + sparsity + ")",
                 "Matrix Size (n)",
@@ -86,35 +73,35 @@ public class TimeDataPlotter {
         );
 
         styleChart(chart, benchmarkData);
-        showChart(chart);
+        showChart(chart, "Matrix Size vs Mean Time (Sparsity " + sparsity + ")");
     }
 
-    private static XYSeriesCollection getDataset(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
+    private void plotSparsityChartWithoutStrassen(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, double sparsity) {
+        XYSeriesCollection dataset = getDatasetForSparsity(benchmarkData, sparsity, true);
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                "Matrix Size vs Mean Time (Sparsity " + sparsity + ", without Strassen)",
+                "Matrix Size (n)",
+                "Mean Time (ms)",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        styleChart(chart, benchmarkData);
+        showChart(chart, "Matrix Size vs Mean Time (Sparsity " + sparsity + ", without Strassen)");
+    }
+
+    private static XYSeriesCollection getDatasetForSparsity(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, double sparsity, boolean excludeStrassen) {
         XYSeriesCollection dataset = new XYSeriesCollection();
 
         for (Map.Entry<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkEntry : benchmarkData.entrySet()) {
             String benchmarkName = benchmarkEntry.getKey();
-
-            for (Map.Entry<Double, List<Pair<Integer, Double>>> sparsityEntry : benchmarkEntry.getValue().entrySet()) {
-                double sparsity = sparsityEntry.getKey();
-                String seriesName = benchmarkName + " (Sparsity " + sparsity + ")";
-                XYSeries series = new XYSeries(seriesName);
-
-                for (Pair<Integer, Double> dataPoint : sparsityEntry.getValue()) {
-                    series.add(dataPoint.getKey(), dataPoint.getValue());
-                }
-
-                dataset.addSeries(series);
+            if (excludeStrassen && benchmarkName.equals("strassenMultiplication")) {
+                continue;
             }
-        }
-        return dataset;
-    }
 
-    private static XYSeriesCollection getDatasetForSparsity(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, double sparsity) {
-        XYSeriesCollection dataset = new XYSeriesCollection();
-
-        for (Map.Entry<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkEntry : benchmarkData.entrySet()) {
-            String benchmarkName = benchmarkEntry.getKey();
             if (benchmarkEntry.getValue().containsKey(sparsity)) {
                 String seriesName = benchmarkName + " (Sparsity " + sparsity + ")";
                 XYSeries series = new XYSeries(seriesName);
@@ -154,11 +141,11 @@ public class TimeDataPlotter {
         setLegendAndTitleFont(chart);
     }
 
-    private void showChart(JFreeChart chart) {
+    private void showChart(JFreeChart chart, String title) {
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
-        JFrame frame = new JFrame("Matrix Size vs Mean Time");
+        JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(chartPanel, BorderLayout.CENTER);
         frame.pack();

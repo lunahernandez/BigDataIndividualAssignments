@@ -1,7 +1,7 @@
 package org.ulpgc;
 
 public class NaiveMatrixMultiplication {
-    public double[][] multiply(double[][] a, double[][] b) {
+    public static double[][] multiply(double[][] a, double[][] b) {
         assert a.length == b.length;
         int n = a.length;
         double[][] c = new double[n][n];

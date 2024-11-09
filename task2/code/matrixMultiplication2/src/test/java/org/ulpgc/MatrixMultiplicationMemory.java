@@ -4,8 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Locale;
 
-public class MatrixMultiplication {
+import static org.ulpgc.SparseMatrixCOOMul.*;
+import static org.ulpgc.SparseMatrixCSCMul.convertToCSC;
+import static org.ulpgc.SparseMatrixCSRMul.convertToCSR;
+
+public class MatrixMultiplicationMemory {
 
     public static void main(String[] args) throws IOException {
         int[] matrixSizes = {64, 128, 512, 1024, 2048};
@@ -17,16 +22,26 @@ public class MatrixMultiplication {
 
             for (int matrixSize : matrixSizes) {
                 for (double sparsity : sparsities) {
+                    System.out.println("Evaluating matrixSize=" + matrixSize + " and sparsity=" + sparsity);
                     double averageMemoryNaive = measureMemoryForMethod(matrixSize, sparsity, "Naive");
                     double averageMemoryBlock = measureMemoryForMethod(matrixSize, sparsity, "Block");
-                    double averageMemoryStrassen = measureMemoryForMethod(matrixSize, sparsity, "Strassen");
                     double averageMemoryLoopUnrolling = measureMemoryForMethod(matrixSize, sparsity, "LoopUnrolling");
+                    double averageMemoryCOO = measureMemoryForMethod(matrixSize, sparsity, "COO");
+                    double averageMemoryCSC = measureMemoryForMethod(matrixSize, sparsity, "CSC");
+                    double averageMemoryCSR = measureMemoryForMethod(matrixSize, sparsity, "CSR");
 
-                    // Write memory usage for each multiplication method
-                    writer.write(String.format("NaiveMultiplication,%d,%.1f,%.15f\n", matrixSize, sparsity, averageMemoryNaive));
-                    writer.write(String.format("BlockMultiplication,%d,%.1f,%.15f\n", matrixSize, sparsity, averageMemoryBlock));
-                    writer.write(String.format("StrassenMultiplication,%d,%.1f,%.15f\n", matrixSize, sparsity, averageMemoryStrassen));
-                    writer.write(String.format("LoopUnrollingMultiplication,%d,%.1f,%.15f\n", matrixSize, sparsity, averageMemoryLoopUnrolling));
+                    writer.write(String.format(Locale.US, "NaiveMultiplication,%d,%.1f,%.15f\n",
+                            matrixSize, sparsity, averageMemoryNaive));
+                    writer.write(String.format(Locale.US, "BlockMultiplication,%d,%.1f,%.15f\n",
+                            matrixSize, sparsity, averageMemoryBlock));
+                    writer.write(String.format(Locale.US, "LoopUnrollingMultiplication,%d,%.1f,%.15f\n",
+                            matrixSize, sparsity, averageMemoryLoopUnrolling));
+                    writer.write(String.format(Locale.US, "COOMultiplication,%d,%.1f,%.15f\n",
+                            matrixSize, sparsity, averageMemoryCOO));
+                    writer.write(String.format(Locale.US, "CSCMultiplication,%d,%.1f,%.15f\n",
+                            matrixSize, sparsity, averageMemoryCSC));
+                    writer.write(String.format(Locale.US, "CSRMultiplication,%d,%.1f,%.15f\n",
+                            matrixSize, sparsity, averageMemoryCSR));
                 }
             }
         }
@@ -42,14 +57,13 @@ public class MatrixMultiplication {
             totalMemoryUsed += measureMemoryForMethodOnce(matrixSize, sparsity, method);
         }
 
-        return totalMemoryUsed / numExperiments / (1024.0 * 1024.0); // Convert to MiB
+        return totalMemoryUsed / numExperiments / (1024.0 * 1024.0);
     }
 
     private static double measureMemoryForMethodOnce(int matrixSize, double sparsity, String method) {
         double[][] a = new double[matrixSize][matrixSize];
         double[][] b = new double[matrixSize][matrixSize];
 
-        // Populate matrices with given sparsity
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
                 if (Math.random() < sparsity) {
@@ -66,20 +80,29 @@ public class MatrixMultiplication {
 
         switch (method) {
             case "Naive":
-                NaiveMatrixMultiplication naive = new NaiveMatrixMultiplication();
-                naive.multiply(a, b);
+                NaiveMatrixMultiplication.multiply(a, b);
                 break;
             case "Block":
-                BlockMatrixMultiplication block = new BlockMatrixMultiplication();
-                block.multiply(a, b, 100);
-                break;
-            case "Strassen":
-                StrassenMatrixMultiplication strassen = new StrassenMatrixMultiplication();
-                strassen.multiply(a, b);
+                BlockMatrixMultiplication.multiply(a, b, 100);
                 break;
             case "LoopUnrolling":
                 LoopUnrollingMatrixMultiplication loopUnrolling = new LoopUnrollingMatrixMultiplication();
                 loopUnrolling.multiply(a, b);
+                break;
+            case "COO":
+                SparseMatrixCOOMul.COOMatrixByRow cooA = convertToCOOByRow(a);
+                SparseMatrixCOOMul.COOMatrixByColumn cooB = convertToCOOByColumn(b);
+                multiply(cooA, cooB);
+                break;
+            case "CSC":
+                SparseMatrixCSCMul.CSCMatrix cscA = convertToCSC(a);
+                SparseMatrixCSCMul.CSCMatrix cscB = convertToCSC(b);
+                cscA.multiply(cscB);
+                break;
+            case "CSR":
+                SparseMatrixCSRMul.CSRMatrix csrA = convertToCSR(a);
+                SparseMatrixCSRMul.CSRMatrix csrB = convertToCSR(b);
+                csrA.multiply(csrB);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown multiplication method: " + method);
@@ -87,7 +110,7 @@ public class MatrixMultiplication {
 
         long afterMemory = getUsedMemory();
 
-        return (afterMemory - beforeMemory) / (1024.0 * 1024.0); // Convert to MiB
+        return (afterMemory - beforeMemory) / (1024.0 * 1024.0);
     }
 
     private static long getUsedMemory() {

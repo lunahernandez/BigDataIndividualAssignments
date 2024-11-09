@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06983c49-50fb-4e9e-8c9a-1fb5702bd21b" name="Changes" comment="Restructuring for task 2">
+    <list default="true" id="06983c49-50fb-4e9e-8c9a-1fb5702bd21b" name="Changes" comment="benchmarks results for time execution">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/data/benchmark_results.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/data/benchmark_results.json" beforeDir="false" afterPath="$PROJECT_DIR$/task2/data/benchmark_results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/MatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/MatrixMultiplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/NaiveMatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/main/java/org/ulpgc/NaiveMatrixMultiplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/test/java/org/ulpgc/MemoryDataPlotter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/test/java/org/ulpgc/MemoryDataPlotter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/test/java/org/ulpgc/TimeDataPlotter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/code/matrixMultiplication2/src/test/java/org/ulpgc/TimeDataPlotter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/data/benchmark_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/task2/data/benchmark_results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/data/memory_usage.csv" beforeDir="false" afterPath="$PROJECT_DIR$/task2/data/memory_usage.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +59,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BenchmarkResultProcessor.executor": "Debug",
+    "Application.BenchmarkResultProcessor.executor": "Run",
     "Application.BlockMatrixMultiplication.executor": "Run",
     "Application.COOMatrix.executor": "Run",
     "Application.MatrixMarketReader.executor": "Run",
@@ -84,6 +89,7 @@
       <recent name="C:\Users\chess\Documents\Luna\UNIVERSIDAD\3º\BD\BigDataIndividualAssignments\task2\code\matrixMultiplication2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Equipo\Luna\UNIVERSIDAD\3º\BD\Task2\task2\data" />
       <recent name="C:\Users\chess\Documents\Luna\UNIVERSIDAD\3º\BD\BigDataIndividualAssignments\task2\data" />
       <recent name="C:\Users\chess\Documents\Luna\UNIVERSIDAD\3º\BD\BigDataIndividualAssignments\task2\code\matrixMultiplication2" />
       <recent name="C:\Users\chess\Documents\Luna\UNIVERSIDAD\3º\BD\BigDataIndividualAssignments\task2\code\matrixMultiplication2\src\main\resources" />
@@ -97,7 +103,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TimeDataPlotter">
+  <component name="RunManager" selected="Application.MemoryDataPlotter">
     <configuration name="BenchmarkResultProcessor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ulpgc.BenchmarkResultProcessor" />
       <module name="matrixMultiplication2" />
@@ -165,11 +171,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MemoryDataPlotter" />
+        <item itemvalue="Application.MatrixMultiplication" />
         <item itemvalue="Application.TimeDataPlotter" />
         <item itemvalue="Application.BenchmarkResultProcessor" />
         <item itemvalue="Jmh.MatrixMultiplicationBenchmarking.*" />
-        <item itemvalue="Application.MatrixMultiplication" />
-        <item itemvalue="Application.MemoryDataPlotter" />
       </list>
     </recent_temporary>
   </component>
@@ -190,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730651898584</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="benchmarks results for time execution">
+      <option name="closed" value="true" />
+      <created>1731174645429</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731174645429</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,6 +220,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Restructuring for task 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructuring for task 2" />
+    <MESSAGE value="benchmarks results for time execution" />
+    <option name="LAST_COMMIT_MESSAGE" value="benchmarks results for time execution" />
   </component>
 </project>

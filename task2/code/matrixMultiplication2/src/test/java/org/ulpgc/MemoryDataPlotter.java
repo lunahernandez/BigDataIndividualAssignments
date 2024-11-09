@@ -32,7 +32,6 @@ public class MemoryDataPlotter {
 
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",");
-
                 String benchmarkName = values[0];
                 int matrixSize = Integer.parseInt(values[1]);
                 double sparsity = Double.parseDouble(values[2]);
@@ -47,78 +46,83 @@ public class MemoryDataPlotter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return benchmarkData;
     }
 
     public void plotBenchmarkComparison(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
-        XYSeriesCollection dataset = getDataset(benchmarkData);
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                "Matrix Size vs Memory Usage",
-                "Matrix Size (n)",
-                "Average Memory Usage (MiB)",
-                dataset,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
+        for (Double sparsity : getSparsities(benchmarkData)) {
+            XYSeriesCollection dataset = getDataset(benchmarkData, sparsity);
+            JFreeChart chart = ChartFactory.createXYLineChart(
+                    "Matrix Size vs Memory Usage (Sparsity " + sparsity + ")",
+                    "Matrix Size (n)",
+                    "Average Memory Usage (MiB)",
+                    dataset,
+                    PlotOrientation.VERTICAL,
+                    true,
+                    true,
+                    false
+            );
 
-        styleChart(chart, benchmarkData);
-        showChart(chart);
+            styleChart(chart, benchmarkData, sparsity);
+            showChart(chart, sparsity);
+        }
     }
 
-    private static XYSeriesCollection getDataset(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
+    private List<Double> getSparsities(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
+        List<Double> sparsities = new ArrayList<>();
+        for (Map<Double, List<Pair<Integer, Double>>> sparsityMap : benchmarkData.values()) {
+            for (Double sparsity : sparsityMap.keySet()) {
+                if (!sparsities.contains(sparsity)) {
+                    sparsities.add(sparsity);
+                }
+            }
+        }
+        return sparsities;
+    }
+
+    private XYSeriesCollection getDataset(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, Double sparsity) {
         XYSeriesCollection dataset = new XYSeriesCollection();
 
         for (Map.Entry<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkEntry : benchmarkData.entrySet()) {
             String benchmarkName = benchmarkEntry.getKey();
+            List<Pair<Integer, Double>> dataPoints = benchmarkEntry.getValue().get(sparsity);
 
-            for (Map.Entry<Double, List<Pair<Integer, Double>>> sparsityEntry : benchmarkEntry.getValue().entrySet()) {
-                double sparsity = sparsityEntry.getKey();
-                String seriesName = benchmarkName + " (Sparsity " + sparsity + ")";
-                XYSeries series = new XYSeries(seriesName);
-
-                for (Pair<Integer, Double> dataPoint : sparsityEntry.getValue()) {
+            if (dataPoints != null) {
+                XYSeries series = new XYSeries(benchmarkName);
+                for (Pair<Integer, Double> dataPoint : dataPoints) {
                     series.add(dataPoint.getKey(), dataPoint.getValue());
                 }
-
                 dataset.addSeries(series);
             }
         }
         return dataset;
     }
 
-    private void styleChart(JFreeChart chart, Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
+    private void styleChart(JFreeChart chart, Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, Double sparsity) {
         chart.setBackgroundPaint(Color.WHITE);
         XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.WHITE);
 
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         int seriesIndex = 0;
-        float[] dashPatterns = {2.0f, 4.0f, 6.0f};
+        BasicStroke stroke = new BasicStroke(2.0f);
 
         for (Map.Entry<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkEntry : benchmarkData.entrySet()) {
-            for (Double sparsity : benchmarkEntry.getValue().keySet()) {
-                BasicStroke stroke = new BasicStroke(
-                        2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f,
-                        new float[]{dashPatterns[(int) (sparsity * (dashPatterns.length - 1))]}, 0.0f
-                );
+            if (benchmarkEntry.getValue().containsKey(sparsity)) {
                 renderer.setSeriesStroke(seriesIndex, stroke);
                 seriesIndex++;
             }
         }
-
         plot.setRenderer(renderer);
         setLabelAndTickFont(plot);
         setLegendAndTitleFont(chart);
     }
 
-    private void showChart(JFreeChart chart) {
+    private void showChart(JFreeChart chart, Double sparsity) {
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
-        JFrame frame = new JFrame("Matrix Size vs Memory Usage");
+        JFrame frame = new JFrame("Matrix Size vs Memory Usage (Sparsity " + sparsity + ")");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(chartPanel, BorderLayout.CENTER);
         frame.pack();
