@@ -52,7 +52,6 @@ public class TimeDataPlotter {
     }
 
     public void plotBenchmarkComparison(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
-        // Gráficos para cada nivel de sparsity con todos los algoritmos
         for (Double sparsity : benchmarkData.values().iterator().next().keySet()) {
             plotSparsityChart(benchmarkData, sparsity);
             plotSparsityChartWithoutStrassen(benchmarkData, sparsity);

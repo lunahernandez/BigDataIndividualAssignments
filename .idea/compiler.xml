@@ -8,10 +8,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="matrixMultiplication2" />
         <module name="matrixMultiplication" />
+        <module name="matrixMultiplication3" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="matrixMultiplication (1)" target="17" />
-    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="--add-modules jdk.incubator.vector " />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="matrixMultiplication" options="" />
+      <module name="matrixMultiplication2" options="" />
+      <module name="matrixMultiplication3" options="" />
+    </option>
   </component>
 </project>
