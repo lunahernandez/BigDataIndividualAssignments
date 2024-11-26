@@ -54,7 +54,7 @@ public class MemoryDataPlotter {
             String benchmarkName = entry.getKey();
             for (Map.Entry<Double, List<Pair<Integer, Double>>> threadEntry : entry.getValue().entrySet()) {
                 double numThreads = threadEntry.getKey();
-                String seriesName = benchmarkName + " (threads=" + (int) numThreads + ")";
+                String seriesName = benchmarkName + (benchmarkName.equals("ParallelMultiplication") ? " (threads=" + (int) numThreads + ")" : ""  );
                 XYSeries series = new XYSeries(seriesName);
 
                 for (Pair<Integer, Double> dataPoint : threadEntry.getValue()) {
