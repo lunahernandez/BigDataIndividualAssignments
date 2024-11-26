@@ -3,13 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\memory_usage.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\task1\data\python_memory_usage.csv">
           <value>
             <Attribute>
@@ -32,13 +25,6 @@
           </value>
         </entry>
         <entry key="\task3\data\memory_usage.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\task3\data\memory_usage2.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
