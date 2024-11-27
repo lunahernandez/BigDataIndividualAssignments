@@ -60,7 +60,17 @@ public class MatrixMultiplicationBenchmarking {
     }
 
     @Benchmark
-    public double[][] vectorizedMultiplication(GlobalMatrixState matrixState) {
+    public double[][] parallelExecutorsMatrixMultiplication(GlobalMatrixState matrixState, ParallelBenchmarkState parallelState)
+            throws InterruptedException {
+        return ParallelMatrixMultiplication.multiplyMatricesParallelWithExecutors(
+                matrixState.a,
+                matrixState.b,
+                parallelState.numThreads
+        );
+    }
+
+    @Benchmark
+    public double[][] vectorizedMatrixMultiplication(GlobalMatrixState matrixState) {
 
         RealMatrix A = MatrixUtils.createRealMatrix(matrixState.a);
         RealMatrix B = MatrixUtils.createRealMatrix(matrixState.b);

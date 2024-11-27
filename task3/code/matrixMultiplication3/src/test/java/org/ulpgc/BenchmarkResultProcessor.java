@@ -11,11 +11,17 @@ import java.nio.charset.StandardCharsets;
 
 public class BenchmarkResultProcessor {
 
+    public static void main(String[] args) {
+        BenchmarkResultProcessor processor = new BenchmarkResultProcessor();
+        processor.processJsonToCsv(
+                "task3/data/benchmark_results.json", "task3/data/benchmark_results.csv");
+    }
+
     public void processJsonToCsv(String jsonFilePath, String csvFilePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(jsonFilePath));
              FileWriter writer = new FileWriter(csvFilePath, StandardCharsets.UTF_8)) {
 
-            writer.append("benchmark_name,matrix_size,num_threads,mean_time,rounds,iterations,warmup\n");
+            writer.append("benchmark_name,matrix_size,num_threads,mean_time,mean_memory,rounds,iterations,warmup\n");
 
             StringBuilder jsonBuilder = new StringBuilder();
             String line;
@@ -36,6 +42,8 @@ public class BenchmarkResultProcessor {
                         : -1;
 
                 double averageTime = jsonObject.getJSONObject("primaryMetric").getDouble("score");
+                double averageMemory = jsonObject.getJSONObject("secondaryMetrics").getJSONObject("·gc.alloc.rate.norm").getDouble("score");
+                averageMemory = convertBytesToMB(averageMemory);
                 int rounds = jsonObject.getInt("forks");
                 int iterations = jsonObject.getInt("measurementIterations");
                 int warmupIterations = jsonObject.getInt("warmupIterations");
@@ -50,6 +58,8 @@ public class BenchmarkResultProcessor {
                         .append(',')
                         .append(String.valueOf(averageTime))
                         .append(',')
+                        .append(String.valueOf(averageMemory))
+                        .append(',')
                         .append(String.valueOf(rounds))
                         .append(',')
                         .append(String.valueOf(iterations))
@@ -63,9 +73,7 @@ public class BenchmarkResultProcessor {
         }
     }
 
-    public static void main(String[] args) {
-        BenchmarkResultProcessor processor = new BenchmarkResultProcessor();
-        processor.processJsonToCsv(
-                "task3/data/benchmark_results.json", "task3/data/benchmark_results.csv");
+    private double convertBytesToMB(double bytes) {
+        return bytes / (1024 * 1024);
     }
 }
