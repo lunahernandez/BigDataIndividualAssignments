@@ -16,18 +16,32 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class TimeDataPlotter {
+public class DataPlotter {
+    public static void main(String[] args) {
+        DataPlotter plotter = new DataPlotter();
+        String csvFilePath = "task3/data/benchmark_results.csv";
+        plotBenchmarkData(plotter, csvFilePath, "Matrix Size vs Memory Usage", "Memory Usage (MB)", false);
+        plotBenchmarkData(plotter, csvFilePath, "Matrix Size vs Execution Time", "Mean Time (ms)", true);
+    }
 
-    public Map<String, Map<Double, List<Pair<Integer, Double>>>> readCsvAndGroupByThreads(String csvFilePath) {
+    private static void plotBenchmarkData(DataPlotter plotter, String csvFilePath, String title, String yAxisLabel, boolean isTimePlot) {
+        Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData = plotter.readCsvAndGroupByThreads(csvFilePath, isTimePlot);
+        plotter.plotComparison(benchmarkData, yAxisLabel, title);
+    }
+
+
+    public Map<String, Map<Double, List<Pair<Integer, Double>>>> readCsvAndGroupByThreads(String csvFilePath, boolean isTimePlot) {
         Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
             reader.readLine();
             while ((line = reader.readLine()) != null) {
-                addBenchmarkData(line, benchmarkData);
+                addBenchmarkData(line, benchmarkData, isTimePlot);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,46 +49,59 @@ public class TimeDataPlotter {
         return benchmarkData;
     }
 
-    private static void addBenchmarkData(String line, Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
+    private static void addBenchmarkData(String line, Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, boolean isTimePlot) {
         String[] values = line.split(",");
         String benchmarkName = values[0];
         int matrixSize = Integer.parseInt(values[1]);
         double numThreads = Double.parseDouble(values[2]);
-        double meanTime = Double.parseDouble(values[3]);
+        double metric;
+        if (isTimePlot) {
+            metric = Double.parseDouble(values[3]);
+        } else {
+            metric = Double.parseDouble(values[4]);
+        }
         benchmarkData
                 .computeIfAbsent(benchmarkName, k -> new HashMap<>())
                 .computeIfAbsent(numThreads, k -> new ArrayList<>())
-                .add(new Pair<>(matrixSize, meanTime));
+                .add(new Pair<>(matrixSize, metric));
     }
 
-    public void plotComparison(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData) {
+    public void plotComparison(Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData, String yAxisLabel, String title) {
         XYSeriesCollection dataset = new XYSeriesCollection();
 
         for (Map.Entry<String, Map<Double, List<Pair<Integer, Double>>>> entry : benchmarkData.entrySet()) {
             String benchmarkName = entry.getKey();
             for (Map.Entry<Double, List<Pair<Integer, Double>>> threadEntry : entry.getValue().entrySet()) {
-                double numThreads = threadEntry.getKey();
-                String seriesName = benchmarkName + (benchmarkName.equals("parallelMatrixMultiplication") ? " (threads=" + (int) numThreads + ")" : ""  );
-                XYSeries series = new XYSeries(seriesName);
-
-                for (Pair<Integer, Double> dataPoint : threadEntry.getValue()) {
-                    series.add(dataPoint.getKey(), dataPoint.getValue());
-                }
+                XYSeries series = getXySeries(threadEntry, benchmarkName);
 
                 dataset.addSeries(series);
             }
         }
 
-        JFreeChart chart = getChart(dataset);
+        JFreeChart chart = getChart(dataset, title, yAxisLabel);
         styleChart(chart);
         showChart(chart);
     }
 
-    private static JFreeChart getChart(XYSeriesCollection dataset) {
+    private static XYSeries getXySeries(Map.Entry<Double, List<Pair<Integer, Double>>> threadEntry, String benchmarkName) {
+        double numThreads = threadEntry.getKey();
+        String seriesName = benchmarkName +
+                (benchmarkName.equals("parallelMatrixMultiplication") ||
+                        benchmarkName.equals("parallelExecutorsMatrixMultiplication") ?
+                        " (threads=" + (int) numThreads + ")" : ""  );
+        XYSeries series = new XYSeries(seriesName);
+
+        for (Pair<Integer, Double> dataPoint : threadEntry.getValue()) {
+            series.add(dataPoint.getKey(), dataPoint.getValue());
+        }
+        return series;
+    }
+
+    private static JFreeChart getChart(XYSeriesCollection dataset, String title, String yAxisLabel) {
         return ChartFactory.createXYLineChart(
-                "Matrix Size vs Execution Time",
+                title,
                 "Matrix Size (n)",
-                "Mean Time (ms)",
+                yAxisLabel,
                 dataset,
                 PlotOrientation.VERTICAL,
                 true,
@@ -87,6 +114,7 @@ public class TimeDataPlotter {
         chart.setBackgroundPaint(Color.WHITE);
         XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.WHITE);
+
 
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setDefaultStroke(new BasicStroke(2.0f));
@@ -123,9 +151,9 @@ public class TimeDataPlotter {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-
     public static class Pair<K, V> {
         K key;
+
         V value;
 
         public Pair(K key, V value) {
@@ -136,16 +164,9 @@ public class TimeDataPlotter {
         public K getKey() {
             return key;
         }
-
         public V getValue() {
             return value;
         }
-    }
 
-    public static void main(String[] args) {
-        TimeDataPlotter plotter = new TimeDataPlotter();
-        String csvFilePath = "task3/data/benchmark_results.csv";
-        Map<String, Map<Double, List<Pair<Integer, Double>>>> benchmarkData = plotter.readCsvAndGroupByThreads(csvFilePath);
-        plotter.plotComparison(benchmarkData);
     }
 }
