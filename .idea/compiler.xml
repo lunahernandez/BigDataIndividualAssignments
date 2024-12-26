@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="matrixMultiplication4" />
+        <module name="matrixMultiplication3" />
         <module name="matrixMultiplication2" />
         <module name="matrixMultiplication" />
-        <module name="matrixMultiplication3" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,6 +19,7 @@
       <module name="matrixMultiplication" options="" />
       <module name="matrixMultiplication2" options="" />
       <module name="matrixMultiplication3" options="" />
+      <module name="matrixMultiplication4" options="" />
     </option>
   </component>
 </project>
