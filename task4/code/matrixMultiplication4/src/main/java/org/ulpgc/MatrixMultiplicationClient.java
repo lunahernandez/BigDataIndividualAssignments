@@ -1,14 +1,20 @@
 package org.ulpgc;
+
+import com.hazelcast.cluster.Member;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.IMap;
+import com.hazelcast.core.IExecutorService;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class MatrixMultiplicationClient {
 
     public static void main(String[] args) {
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
+        IExecutorService executorService = hazelcastInstance.getExecutorService("executorService");
 
         int[][] matrixA = {
                 {1, 0, 0, 0},
@@ -33,17 +39,6 @@ public class MatrixMultiplicationClient {
             throw new IllegalArgumentException("Matrix dimensions do not match for multiplication");
         }
 
-        IMap<Integer, int[]> tasks = hazelcastInstance.getMap("tasks");
-        IMap<Integer, int[]> results = hazelcastInstance.getMap("results");
-
-        for (int i = 0; i < rowsA; i++) {
-            tasks.put(i, matrixA[i]);
-        }
-
-        for (int i = 0; i < colsB; i++) {
-            tasks.put(rowsA + i, getColumn(matrixB, i));
-        }
-
         System.out.println("Matrix A:");
         for (int[] row : matrixA) {
             System.out.println(Arrays.toString(row));
@@ -54,25 +49,36 @@ public class MatrixMultiplicationClient {
             System.out.println(Arrays.toString(row));
         }
 
-        System.out.println("Waiting for results...");
+        List<Member> members = hazelcastInstance.getCluster().getMembers().stream().toList();
 
-        while (results.size() < rowsA) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        Integer[][] resultMatrix = new Integer[rowsA][colsB];
+
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                MatrixMultiplicationTask task = new MatrixMultiplicationTask(matrixA[i], getColumn(matrixB, j), i, j);
+
+                Member targetMember = members.get((i * colsB + j) % members.size());
+
+                System.out.println("Sending task for position (" + i + "," + j + ") to member: " + targetMember.getAddress());
+
+                Future<Integer> future = executorService.submitToMember(task, targetMember);
+
+                try {
+                    Integer result = future.get();
+                    resultMatrix[i][j] = result;
+                    System.out.println("Result from task for position (" + i + "," + j + "): " + result);
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        int[][] resultMatrix = new int[rowsA][colsB];
+        System.out.println("Matrix Result:");
         for (int i = 0; i < rowsA; i++) {
-            int[] rowResult = results.get(i);
-            resultMatrix[i] = rowResult;
-        }
-
-        System.out.println("Result:");
-        for (int[] row : resultMatrix) {
-            System.out.println(Arrays.toString(row));
+            for (int j = 0; j < colsB; j++) {
+                System.out.print(resultMatrix[i][j] + " ");
+            }
+            System.out.println();
         }
 
         hazelcastInstance.shutdown();

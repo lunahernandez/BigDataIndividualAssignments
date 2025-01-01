@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06983c49-50fb-4e9e-8c9a-1fb5702bd21b" name="Changes" comment="first commit task 4">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="06983c49-50fb-4e9e-8c9a-1fb5702bd21b" name="Changes" comment="multiplication with nodes in docker + todo nodes balance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task4/code/matrixMultiplication4/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task4/code/matrixMultiplication4/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task4/code/matrixMultiplication4/src/main/java/org/ulpgc/MatrixMultiplicationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/task4/code/matrixMultiplication4/src/main/java/org/ulpgc/MatrixMultiplicationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task4/code/matrixMultiplication4/src/main/java/org/ulpgc/MatrixMultiplicationNode.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,50 +53,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AvailableProcessorsExample.executor&quot;: &quot;Run&quot;,
-    &quot;Application.BenchmarkResultProcessor.executor&quot;: &quot;Run&quot;,
-    &quot;Application.BlockMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.COOMatrix.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DataPlotter.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DistributedMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HazelcastNode.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MatrixMarketReader.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MatrixMul.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MatrixMultiplicationHazelcast.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MatrixMultiplicationMemory.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Memory.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MemoryDataPlotter.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MemoryDataPlotter2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NaiveMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ParallelExecutorsMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ParallelMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SparseMatrixCOOMul.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StrassenMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TimeDataPlotter.executor&quot;: &quot;Run&quot;,
-    &quot;Application.VectorizedMatrixMultiplication.executor&quot;: &quot;Run&quot;,
-    &quot;Jmh.MatrixMultiplicationBenchmarking.* (1).executor&quot;: &quot;Run&quot;,
-    &quot;Jmh.MatrixMultiplicationBenchmarking.*.executor&quot;: &quot;Run&quot;,
-    &quot;Jmh.MatrixMultiplicationBenchmarking.multiplication5$.executor&quot;: &quot;Run&quot;,
-    &quot;Jmh.MatrixMultiplicationBenchmarking.multiplication6$.executor&quot;: &quot;Run&quot;,
-    &quot;Jmh.MatrixMultiplicationBenchmarking.multiplication7$.executor&quot;: &quot;Run&quot;,
-    &quot;Jmh.Memory.*.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.matrixMultiplication3 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.matrixMultiplication4 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.matrixMultiplication4 [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;task4&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/chess/Documents/Luna/UNIVERSIDAD/3º/BD/BigDataIndividualAssignments/task4/code&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AvailableProcessorsExample.executor": "Run",
+    "Application.BenchmarkResultProcessor.executor": "Run",
+    "Application.BlockMatrixMultiplication.executor": "Run",
+    "Application.COOMatrix.executor": "Run",
+    "Application.DataPlotter.executor": "Run",
+    "Application.DistributedMatrixMultiplication.executor": "Run",
+    "Application.HazelcastNode.executor": "Run",
+    "Application.MatrixMarketReader.executor": "Run",
+    "Application.MatrixMul.executor": "Run",
+    "Application.MatrixMultiplication.executor": "Run",
+    "Application.MatrixMultiplicationClient.executor": "Run",
+    "Application.MatrixMultiplicationHazelcast.executor": "Run",
+    "Application.MatrixMultiplicationMemory.executor": "Run",
+    "Application.MatrixMultiplicationNode.executor": "Run",
+    "Application.Memory.executor": "Run",
+    "Application.MemoryDataPlotter.executor": "Run",
+    "Application.MemoryDataPlotter2.executor": "Run",
+    "Application.NaiveMatrixMultiplication.executor": "Run",
+    "Application.ParallelExecutorsMatrixMultiplication.executor": "Run",
+    "Application.ParallelMatrixMultiplication.executor": "Run",
+    "Application.SparseMatrixCOOMul.executor": "Run",
+    "Application.StrassenMatrixMultiplication.executor": "Run",
+    "Application.TimeDataPlotter.executor": "Run",
+    "Application.VectorizedMatrixMultiplication.executor": "Run",
+    "Jmh.MatrixMultiplicationBenchmarking.* (1).executor": "Run",
+    "Jmh.MatrixMultiplicationBenchmarking.*.executor": "Run",
+    "Jmh.MatrixMultiplicationBenchmarking.multiplication5$.executor": "Run",
+    "Jmh.MatrixMultiplicationBenchmarking.multiplication6$.executor": "Run",
+    "Jmh.MatrixMultiplicationBenchmarking.multiplication7$.executor": "Run",
+    "Jmh.Memory.*.executor": "Run",
+    "Maven.matrixMultiplication3 [clean].executor": "Run",
+    "Maven.matrixMultiplication4 [clean].executor": "Run",
+    "Maven.matrixMultiplication4 [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "task4",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/chess/Documents/Luna/UNIVERSIDAD/3º/BD/BigDataIndividualAssignments/task4/code",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\chess\Documents\Luna\UNIVERSIDAD\3º\BD\BigDataIndividualAssignments\task3\code\matrixMultiplication3\src\test\java\org\ulpgc" />
@@ -157,9 +159,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParallelMatrixMultiplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ulpgc.ParallelMatrixMultiplication" />
-      <module name="matrixMultiplication3" />
+    <configuration name="MatrixMultiplicationNode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ulpgc.MatrixMultiplicationNode" />
+      <module name="matrixMultiplication4" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.ulpgc.*" />
@@ -177,19 +179,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.MatrixMultiplicationNode" />
       <item itemvalue="Application.MatrixMultiplicationClient" />
       <item itemvalue="Application.HazelcastNode" />
       <item itemvalue="Application.MatrixMultiplicationHazelcast" />
-      <item itemvalue="Application.ParallelMatrixMultiplication" />
       <item itemvalue="Jmh.MatrixMultiplicationBenchmarking.*" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MatrixMultiplicationClient" />
+        <item itemvalue="Application.MatrixMultiplicationNode" />
         <item itemvalue="Application.HazelcastNode" />
         <item itemvalue="Application.MatrixMultiplicationHazelcast" />
         <item itemvalue="Jmh.MatrixMultiplicationBenchmarking.*" />
-        <item itemvalue="Application.ParallelMatrixMultiplication" />
       </list>
     </recent_temporary>
   </component>
@@ -250,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735207353726</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="multiplication with nodes in docker + todo nodes balance">
+      <option name="closed" value="true" />
+      <created>1735761121165</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1735761121165</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,6 +281,7 @@
     <MESSAGE value="some graphs corrections" />
     <MESSAGE value="paper updated" />
     <MESSAGE value="first commit task 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit task 4" />
+    <MESSAGE value="multiplication with nodes in docker + todo nodes balance" />
+    <option name="LAST_COMMIT_MESSAGE" value="multiplication with nodes in docker + todo nodes balance" />
   </component>
 </project>
