@@ -7,14 +7,10 @@ public class MatrixMultiplicationTask implements Callable<Integer>, Serializable
 
     private final int[] rowA;
     private final int[] columnB;
-    private final int i;
-    private final int j;
 
-    public MatrixMultiplicationTask(int[] rowA, int[] columnB, int i, int j) {
+    public MatrixMultiplicationTask(int[] rowA, int[] columnB) {
         this.rowA = rowA;
         this.columnB = columnB;
-        this.i = i;
-        this.j = j;
     }
 
     @Override
