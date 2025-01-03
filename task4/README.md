@@ -10,12 +10,22 @@
 **University:** Universidad de Las Palmas de Gran Canaria
 
 ## Summary of Functionality
+This project shows the process of distributed matrix multiplication using Hazelcast. The system is developed to run locally with nodes created in Docker containers. The project consists of three main Java classes, each of which provides a specific function in the distributed execution process
 
 ### MatrixMultiplicationNode.java
+This class initialises a new instance of Hazelcast within a node. It:
+- Automatically connects to the existing Hazelcast cluster.
+- Keeps the node available to receive and process tasks.
+- Represents a 'worker' node in the cluster.
 
 ### MatrixMultiplicationClient.java
+This class acts as a client that:
+- Generates matrix multiplication tasks by splitting the operation into smaller subtasks.
+- Sends these tasks to the nodes of the Hazelcast cluster.
+- Collects the results from the nodes and displays the final matrix.
 
 ### MatrixMultiplicationTask.java
+This Java class represents a matrix multiplication task. This task refers to a partial matrix multiplication. One row and one column shall be multiplied.
 
 ## Run the Project
 To run the project, you have to do these steps before:
@@ -35,5 +45,7 @@ mvn clean install
 docker-compose build
 docker-compose up
 ```
+
+The code above will create 4 nodes. One of them will represent the "client" which makes the matrix multiplication query and the one that receives the results. Multiplication tasks will be distributed between the existing nodes by Hazelcast.
 
 ## Experiments and Results
