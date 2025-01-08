@@ -27,15 +27,19 @@ This class acts as a client that:
 ### MatrixMultiplicationTask.java
 This Java class represents a matrix multiplication task. This task refers to a partial matrix multiplication. One row and one column shall be multiplied.
 
-## Run the Project
-To run the project, you have to do these steps before:
-1. **Download the project**. Download the project and store it in your computer.
-2. **Open Docker Desktop**. Start Docker Desktop application.
+## Prerequisites
+1. **Java and Maven**: Ensure that Java (version 8+) and Maven are installed.
+2. **Docker**: Install Docker and Docker Desktop for managing containers.
+3. **Project Download**: Clone or download the project to your local machine.
 
-Once you have that, you have to create a network to connect the nodes.
+## Run the Project
+1. **Create Docker Network**
+To enable communication between containers, create a custom network:
 ```bash
 docker network create hazelcast-network
 ```
+
+2. **Build and Deploy**
 Then, you have to create the images and the containers. To do this, you can use docker-compose. Use the following code to remove any image or container with the same names if exist, create .jar files and the use docker-compose to create the images and the containers.
 
 ```bash
