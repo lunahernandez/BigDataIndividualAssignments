@@ -1,0 +1,12 @@
+<hazelcast>
+    <network>
+        <join>
+            <multicast enabled="false"/>
+            <tcp-ip enabled="true">
+                <member>hazelcast-node-1:5701</member>
+                <member>hazelcast-node-2:5701</member>
+                <member>hazelcast-node-3:5701</member>
+            </tcp-ip>
+        </join>
+    </network>
+</hazelcast>
