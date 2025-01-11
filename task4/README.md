@@ -52,4 +52,11 @@ docker-compose up
 
 The code above will create 4 nodes. One of them will represent the "client" which makes the matrix multiplication query and the one that receives the results. Multiplication tasks will be distributed between the existing nodes by Hazelcast.
 
-## Experiments and Results
+## Experiments and Observations
+The project was executed locally with multiple nodes as described above. Matrix multiplication tasks were distributed among the worker nodes. Although this distributed approach introduces overhead (e.g. data serialisation, task submission and result aggregation), it provides significant scalability advantages.
+
+Here you have a brief comparison with naive and parallel approaches:
+- **Execution time**: Distributed execution is expected to take longer locally compared to naive or parallel multiplication due to the added overhead of inter-node communication.
+- **Scalability**: The main benefit lies in the ability to scale horizontally by adding more nodes, including physical devices, to the cluster.
+- **Memory efficiency**: Distributed execution reduces memory usage on individual nodes, making it suitable for large-scale problems that would otherwise exceed the memory limits of a single machine.
+
